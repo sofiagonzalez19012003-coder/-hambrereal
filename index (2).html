@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUMU · #HambreReal</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --purple: #3D2B8E;
+  --purple-dark: #1A1235;
+  --yellow: #F5E642;
+  --green: #4BAE74;
+  --pink: #E8637A;
+  --cream: #FAF6EE;
+  --lilac: #C4B8F0;
+  --orange: #F07D3A;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--purple-dark);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(26,18,53,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav-logo {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.02em;
+}
+
+.nav-logo span { color: var(--yellow); font-style: italic; }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--yellow); }
+
+.nav-cta {
+  background: var(--yellow);
+  color: var(--purple-dark);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.03em;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(245,230,66,0.4);
+}
+
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--purple-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.hero-glow-1 {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(61,43,142,0.6) 0%, transparent 70%);
+  top: -100px; left: -100px;
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero-glow-2 {
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,99,122,0.2) 0%, transparent 70%);
+  bottom: 0; right: -50px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -30px); }
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 100px;
+  padding: 8px 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  margin-bottom: 40px;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.hero-question {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(56px, 10vw, 130px);
+  font-weight: 900;
+  font-style: italic;
+  color: white;
+  line-height: 0.9;
+  margin-bottom: 32px;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.hero-question span {
+  color: var(--yellow);
+  display: block;
+}
+
+.hero-desc {
+  max-width: 520px;
+  font-size: 17px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.8;
+  margin-bottom: 56px;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.8s 0.6s ease both;
+}
+
+.btn-primary {
+  background: var(--yellow);
+  color: var(--purple-dark);
+  border: none;
+  padding: 16px 36px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(245,230,66,0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 16px 36px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-secondary:hover {
+  border-color: white;
+  background: rgba(255,255,255,0.06);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.3);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  z-index: 1;
+  animation: fadeUp 1s 1s ease both;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+  animation: scrollAnim 2s ease-in-out infinite;
+}
+
+@keyframes scrollAnim {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── CONTADOR ── */
+.contador-section {
+  background: var(--purple);
+  padding: 80px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contador-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,0.02) 0px,
+    rgba(255,255,255,0.02) 1px,
+    transparent 1px,
+    transparent 80px
+  );
+}
+
+.contador-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 24px;
+  position: relative; z-index: 1;
+}
+
+.contador-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2px;
+  max-width: 900px;
+  margin: 0 auto 40px;
+  position: relative; z-index: 1;
+}
+
+.contador-item {
+  background: rgba(255,255,255,0.04);
+  padding: 40px 24px;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.3s;
+}
+
+.contador-item:hover { background: rgba(255,255,255,0.08); }
+
+.contador-num {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 900;
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.contador-desc {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.progress-bar-wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative; z-index: 1;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 34%;
+  background: linear-gradient(90deg, var(--green), var(--yellow));
+  border-radius: 100px;
+  animation: fillBar 2s 0.5s ease both;
+  transform-origin: left;
+}
+
+@keyframes fillBar {
+  from { width: 0; }
+  to { width: 34%; }
+}
+
+.progress-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* ── MANIFIESTO ── */
+.manifiesto {
+  padding: 100px 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 24px;
+  display: block;
+}
+
+.manifiesto h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  color: var(--purple);
+  line-height: 1.1;
+  margin-bottom: 40px;
+}
+
+.manifiesto h2 em {
+  font-style: italic;
+  color: var(--pink);
+}
+
+.manifiesto-paras {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.manifiesto-para {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #444;
+  padding-left: 24px;
+  border-left: 2px solid var(--lilac);
+}
+
+.manifiesto-para strong {
+  color: var(--purple);
+  font-weight: 600;
+}
+
+.manifiesto-quote {
+  background: var(--purple-dark);
+  color: white;
+  border-radius: 20px;
+  padding: 48px;
+  margin-top: 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.manifiesto-quote::before {
+  content: '"';
+  font-family: 'Fraunces', serif;
+  font-size: 200px;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  top: -40px;
+  left: 20px;
+  line-height: 1;
+}
+
+.manifiesto-quote p {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.5;
+  position: relative; z-index: 1;
+}
+
+.manifiesto-quote span {
+  display: block;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--yellow);
+  margin-top: 20px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── DATOS ── */
+.datos-section {
+  background: var(--cream);
+  padding: 80px 40px;
+}
+
+.datos-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.datos-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.datos-header h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 12px;
+}
+
+.datos-header p {
+  font-size: 16px;
+  color: #777;
+  font-weight: 300;
+}
+
+.datos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+}
+
+@media (max-width: 640px) { .datos-grid { grid-template-columns: 1fr; } }
+
+.dato-card {
+  padding: 48px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dato-card-pink { background: var(--pink); }
+.dato-card-purple { background: var(--purple); }
+.dato-card-green { background: var(--green); }
+.dato-card-dark { background: var(--purple-dark); }
+
+.dato-num {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(52px, 7vw, 88px);
+  font-weight: 900;
+  color: white;
+  line-height: 1;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.dato-card-pink .dato-num { color: var(--purple-dark); }
+.dato-card-green .dato-num { color: var(--purple-dark); }
+
+.dato-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+}
+
+.dato-card-pink .dato-text,
+.dato-card-green .dato-text { color: rgba(26,18,53,0.8); }
+
+.dato-source {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 16px;
+  opacity: 0.5;
+  display: block;
+}
+
+.dato-card-pink .dato-source,
+.dato-card-green .dato-source { color: var(--purple-dark); }
+.dato-card-purple .dato-source,
+.dato-card-dark .dato-source { color: white; }
+
+/* ── QUIZ ── */
+.quiz-section {
+  background: var(--yellow);
+  padding: 100px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-section::before {
+  content: '?';
+  font-family: 'Fraunces', serif;
+  font-size: 400px;
+  font-weight: 900;
+  color: rgba(26,18,53,0.05);
+  position: absolute;
+  right: -60px;
+  top: -80px;
+  line-height: 1;
+}
+
+.quiz-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative; z-index: 1;
+}
+
+.quiz-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--purple);
+  opacity: 0.6;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.quiz-inner h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 900;
+  color: var(--purple-dark);
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+.quiz-inner p {
+  font-size: 17px;
+  font-weight: 300;
+  color: rgba(26,18,53,0.7);
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.quiz-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.quiz-step {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(26,18,53,0.06);
+  border-radius: 14px;
+  padding: 16px 20px;
+}
+
+.quiz-step-num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--purple-dark);
+  color: var(--yellow);
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.quiz-step p {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--purple-dark);
+  margin: 0;
+}
+
+.quiz-cta {
+  background: var(--purple-dark);
+  color: var(--yellow);
+  border: none;
+  padding: 18px 48px;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quiz-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(26,18,53,0.3);
+}
+
+/* ── QUIZ MODAL ── */
+.quiz-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(26,18,53,0.95);
+  backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.quiz-modal.active { display: flex; }
+
+.quiz-box {
+  background: var(--cream);
+  border-radius: 24px;
+  padding: 48px;
+  max-width: 540px;
+  width: 100%;
+  position: relative;
+}
+
+.quiz-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+  width: 36px; height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.quiz-close:hover { background: rgba(0,0,0,0.06); }
+
+.quiz-progress {
+  height: 3px;
+  background: rgba(61,43,142,0.1);
+  border-radius: 100px;
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  background: var(--purple);
+  border-radius: 100px;
+  transition: width 0.4s ease;
+}
+
+.quiz-q-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.quiz-question {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 28px;
+  line-height: 1.3;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quiz-option {
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--purple-dark);
+  cursor: pointer;
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  line-height: 1.4;
+}
+
+.quiz-option:hover {
+  border-color: var(--purple);
+  background: rgba(61,43,142,0.04);
+}
+
+.quiz-option.selected {
+  border-color: var(--purple);
+  background: rgba(61,43,142,0.08);
+}
+
+.quiz-result {
+  display: none;
+  text-align: center;
+}
+
+.quiz-result.active { display: block; }
+
+.quiz-result-icon { font-size: 56px; margin-bottom: 16px; }
+
+.quiz-result h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 12px;
+}
+
+.quiz-result p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.quiz-result-cta {
+  background: var(--purple);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.quiz-result-cta:hover {
+  background: var(--purple-dark);
+  transform: translateY(-2px);
+}
+
+/* ── CAMILAS ── */
+.camilas-section {
+  background: var(--purple-dark);
+  padding: 100px 40px;
+}
+
+.camilas-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.camilas-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.camilas-header h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.camilas-header p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+}
+
+.camilas-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .camilas-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 500px) {
+  .camilas-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.camila-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.camila-card:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.15);
+}
+
+.camila-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.camila-name {
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.camila-city {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.camila-tag {
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-weight: 600;
+}
+
+/* ── TRIPLE ACCION ── */
+.triple-section {
+  background: white;
+  padding: 100px 40px;
+}
+
+.triple-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.triple-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.triple-header h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 12px;
+}
+
+.triple-header p {
+  font-size: 16px;
+  color: #777;
+  font-weight: 300;
+}
+
+.triple-items {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.triple-item {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  align-items: center;
+  gap: 32px;
+  padding: 40px 48px;
+  background: var(--cream);
+  transition: background 0.3s;
+}
+
+.triple-item:hover { background: #f0ece4; }
+
+@media (max-width: 640px) {
+  .triple-item {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+    text-align: center;
+  }
+}
+
+.triple-num {
+  font-family: 'Fraunces', serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--purple);
+  opacity: 0.2;
+  line-height: 1;
+}
+
+.triple-content h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 8px;
+}
+
+.triple-content p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.7;
+}
+
+.triple-equals {
+  font-family: 'Fraunces', serif;
+  font-size: 48px;
+  font-weight: 900;
+  text-align: right;
+}
+
+/* ── ALIADOS ── */
+.aliados-section {
+  background: var(--cream);
+  padding: 100px 40px;
+}
+
+.aliados-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.aliados-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.aliados-header h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 12px;
+}
+
+.aliados-header p {
+  font-size: 16px;
+  color: #777;
+  font-weight: 300;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.aliados-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 640px) { .aliados-grid { grid-template-columns: 1fr; } }
+
+.aliado-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  border: 1px solid rgba(61,43,142,0.06);
+  transition: all 0.3s;
+}
+
+.aliado-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(61,43,142,0.08);
+}
+
+.aliado-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.aliado-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 6px;
+}
+
+.aliado-card p {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.6;
+}
+
+.aliado-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 8px;
+}
+
+/* ── APOYO ── */
+.apoyo-section {
+  background: var(--purple);
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.apoyo-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.apoyo-section h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.apoyo-section p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.apoyo-linea {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 14px;
+  padding: 16px 28px;
+}
+
+.apoyo-num {
+  font-family: 'Fraunces', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--yellow);
+}
+
+.apoyo-text {
+  text-align: left;
+}
+
+.apoyo-text strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+
+.apoyo-text span {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ── CTA FINAL ── */
+.cta-final {
+  background: var(--purple-dark);
+  padding: 120px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-final::before {
+  content: '#HambreReal';
+  font-family: 'Fraunces', serif;
+  font-size: clamp(60px, 12vw, 160px);
+  font-weight: 900;
+  color: rgba(255,255,255,0.025);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.cta-final h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 900;
+  color: white;
+  line-height: 1;
+  margin-bottom: 20px;
+  position: relative; z-index: 1;
+}
+
+.cta-final h2 span { color: var(--yellow); font-style: italic; }
+
+.cta-final p {
+  font-size: 17px;
+  color: rgba(255,255,255,0.5);
+  max-width: 480px;
+  margin: 0 auto 48px;
+  line-height: 1.7;
+  font-weight: 300;
+  position: relative; z-index: 1;
+}
+
+.cta-final-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #0D0A1A;
+  padding: 48px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-logo {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: white;
+}
+
+.footer-logo span { color: var(--yellow); font-style: italic; }
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.footer-links a {
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: white; }
+
+.footer-hash {
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">mu<span>mu</span></div>
+  <ul class="nav-links">
+    <li><a href="#manifiesto">La causa</a></li>
+    <li><a href="#datos">Los datos</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#aliados">Aliados</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('quiz-modal').classList.add('active')">
+    Descubre tu hambre real
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+
+  <div class="hero-tag">Campaña de impacto social · MUMU Colombia</div>
+
+  <h1 class="hero-question">
+    ¿De qué<br>tienes
+    <span>hambre?</span>
+  </h1>
+
+  <p class="hero-desc">
+    Dos hambres invisibles. Una que se ve en los datos.
+    Otra que se siente pero nadie nombra.
+    MUMU decidió conectarlas.
+  </p>
+
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="document.getElementById('quiz-modal').classList.add('active')">
+      Descubrir mi hambre real
+    </button>
+    <a href="#manifiesto" class="btn-secondary">Leer el manifiesto</a>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Desplázate</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- CONTADOR -->
+<section class="contador-section">
+  <div class="contador-label">Impacto en tiempo real · Junio 2025</div>
+  <div class="contador-grid reveal">
+    <div class="contador-item">
+      <span class="contador-num" style="color: var(--pink);" id="counter1">0</span>
+      <span class="contador-desc">Almuerzos donados</span>
+    </div>
+    <div class="contador-item">
+      <span class="contador-num" style="color: var(--green);" id="counter2">0</span>
+      <span class="contador-desc">Sesiones psicológicas</span>
+    </div>
+    <div class="contador-item">
+      <span class="contador-num" style="color: var(--yellow);" id="counter3">0</span>
+      <span class="contador-desc">Historias compartidas</span>
+    </div>
+    <div class="contador-item">
+      <span class="contador-num" style="color: var(--lilac);" id="counter4">0</span>
+      <span class="contador-desc">Días de campaña</span>
+    </div>
+  </div>
+
+  <div class="progress-bar-wrap reveal">
+    <div class="progress-label">
+      <span>Meta: 10.000 almuerzos</span>
+      <span>34% alcanzado</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+    <p class="progress-note">
+      Trazado y auditado públicamente · Alianza Banco de Alimentos de Colombia
+    </p>
+  </div>
+</section>
+
+<!-- MANIFIESTO -->
+<section class="manifiesto" id="manifiesto">
+  <span class="section-tag reveal">El manifiesto</span>
+  <h2 class="reveal">Una marca <em>honesta</em><br>tiene una responsabilidad enorme.</h2>
+
+  <div class="manifiesto-paras reveal">
+    <p class="manifiesto-para">
+      <strong>1 de cada 10 niños en Colombia sufre desnutrición crónica.</strong>
+      Eso es hambre física. La que se puede contar, la que tiene cifras,
+      la que aparece en los informes del ICBF.
+    </p>
+    <p class="manifiesto-para">
+      Pero hay otro hambre. La que crece cuando scrolleas 200 cuerpos
+      antes del desayuno. La que aparece a las 2am frente a una nevera abierta,
+      sin saber bien qué estás buscando. La que se llama disciplina
+      cuando en realidad es miedo. <strong>Esa también es real.</strong>
+    </p>
+    <p class="manifiesto-para">
+      MUMU nació para decir que cuidarse puede ser rico, fácil y sin restricciones.
+      Hoy decidimos ir más lejos. <strong>Decidimos preguntar lo que nadie pregunta.</strong>
+      No qué comes. Sino de qué tienes hambre de verdad.
+    </p>
+  </div>
+
+  <div class="manifiesto-quote reveal">
+    <p>
+      "La comida nunca fue el problema.<br>
+      Fue el lenguaje que usamos<br>
+      para decir lo que no sabíamos decir."
+    </p>
+    <span>#HambreReal · MUMU 2025</span>
+  </div>
+</section>
+
+<!-- DATOS -->
+<section class="datos-section" id="datos">
+  <div class="datos-inner">
+    <div class="datos-header reveal">
+      <span class="section-tag">Los números que nadie quiere ver</span>
+      <h2>Dos hambres.<br>Una sola conversación.</h2>
+      <p>Datos reales. Colombia y el mundo.</p>
+    </div>
+
+    <div class="datos-grid reveal">
+      <div class="dato-card dato-card-pink">
+        <span class="dato-num">1/10</span>
+        <p class="dato-text">niños en Colombia sufre desnutrición crónica. El hambre que se ve.</p>
+        <span class="dato-source">Fuente: ICBF Colombia</span>
+      </div>
+      <div class="dato-card dato-card-purple">
+        <span class="dato-num">+30%</span>
+        <p class="dato-text">crecimiento en trastornos alimentarios en mujeres jóvenes post-pandemia en Colombia.</p>
+        <span class="dato-source">Fuente: ACAB Colombia</span>
+      </div>
+      <div class="dato-card dato-card-green">
+        <span class="dato-num">55M</span>
+        <p class="dato-text">personas en el mundo afectadas por trastornos alimentarios, según la OMS. El 90% son mujeres.</p>
+        <span class="dato-source">Fuente: OMS 2024</span>
+      </div>
+      <div class="dato-card dato-card-dark">
+        <span class="dato-num">70%</span>
+        <p class="dato-text">de las mujeres reporta sentir culpa después de comer. No es falta de voluntad. Es una herida.</p>
+        <span class="dato-source">Fuente: Journal of Eating Disorders</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section" id="quiz">
+  <div class="quiz-inner">
+    <span class="quiz-tag">Diagnóstico MUMU</span>
+    <h2>¿Cuál es<br>tu hambre real?</h2>
+    <p>60 segundos. Sin juicios. Sin resultados de dieta.
+      Solo una pregunta honesta que nadie te había hecho.</p>
+
+    <div class="quiz-steps">
+      <div class="quiz-step">
+        <div class="quiz-step-num">1</div>
+        <p>Responde 4 preguntas honestas sobre tu relación con la comida</p>
+      </div>
+      <div class="quiz-step">
+        <div class="quiz-step-num">2</div>
+        <p>Descubre qué tipo de hambre real te mueve</p>
+      </div>
+      <div class="quiz-step">
+        <div class="quiz-step-num">3</div>
+        <p>Recibe recursos y tu kit MUMU personalizado</p>
+      </div>
+    </div>
+
+    <button class="quiz-cta" onclick="document.getElementById('quiz-modal').classList.add('active')">
+      Comenzar el diagnóstico
+      <span>→</span>
+    </button>
+  </div>
+</section>
+
+<!-- QUIZ MODAL -->
+<div class="quiz-modal" id="quiz-modal">
+  <div class="quiz-box">
+    <button class="quiz-close" onclick="closeQuiz()">✕</button>
+
+    <div id="quiz-content">
+      <div class="quiz-progress">
+        <div class="quiz-progress-fill" id="quiz-progress" style="width: 25%"></div>
+      </div>
+
+      <div id="q1">
+        <div class="quiz-q-num">Pregunta 1 de 4</div>
+        <div class="quiz-question">¿Cuándo sueles pensar más en comida?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="nextQ('q1','q2',50)">Cuando estoy estresada o ansiosa</button>
+          <button class="quiz-option" onclick="nextQ('q1','q2',50)">Cuando veo a otras personas comiendo</button>
+          <button class="quiz-option" onclick="nextQ('q1','q2',50)">Cuando estoy sola y no tengo nada que hacer</button>
+          <button class="quiz-option" onclick="nextQ('q1','q2',50)">Casi no pienso en comida durante el día</button>
+        </div>
+      </div>
+
+      <div id="q2" style="display:none">
+        <div class="quiz-q-num">Pregunta 2 de 4</div>
+        <div class="quiz-question">¿Cómo te sientes después de comer algo que "no debías"?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="nextQ('q2','q3',75)">Con culpa, me prometo compensarlo</button>
+          <button class="quiz-option" onclick="nextQ('q2','q3',75)">Normal, fue una decisión consciente</button>
+          <button class="quiz-option" onclick="nextQ('q2','q3',75)">No lo disfruto porque pienso en las consecuencias</button>
+          <button class="quiz-option" onclick="nextQ('q2','q3',75)">Me da igual, no pienso en "debería" o "no debería"</button>
+        </div>
+      </div>
+
+      <div id="q3" style="display:none">
+        <div class="quiz-q-num">Pregunta 3 de 4</div>
+        <div class="quiz-question">¿Con qué frase te identificas más?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="nextQ('q3','q4',100)">Como para calmar algo que no es hambre física</button>
+          <button class="quiz-option" onclick="nextQ('q3','q4',100)">Dejo de comer cuando estoy triste o ansiosa</button>
+          <button class="quiz-option" onclick="nextQ('q3','q4',100)">Me comparo con otras mujeres antes de decidir qué comer</button>
+          <button class="quiz-option" onclick="nextQ('q3','q4',100)">Mi relación con la comida es bastante tranquila</button>
+        </div>
+      </div>
+
+      <div id="q4" style="display:none">
+        <div class="quiz-q-num">Pregunta 4 de 4</div>
+        <div class="quiz-question">¿Qué necesitas más ahora mismo?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="showResult()">Alguien que me escuche sin juzgar</button>
+          <button class="quiz-option" onclick="showResult()">Hábitos que pueda sostener sin esfuerzo enorme</button>
+          <button class="quiz-option" onclick="showResult()">Entender por qué me relaciono así con la comida</button>
+          <button class="quiz-option" onclick="showResult()">Solo quiero cuidarme mejor día a día</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-result" id="quiz-result">
+      <div class="quiz-result-icon">🌿</div>
+      <h3>Tu hambre es real.<br>Y tiene nombre.</h3>
+      <p>
+        Tu relación con la comida refleja algo más profundo.
+        No estás sola — millones de mujeres viven esto en silencio.
+        MUMU no es una solución mágica, pero sí un primer paso honesto
+        hacia cuidarte sin restricciones ni culpa.
+      </p>
+      <a href="https://mumucol.com" class="quiz-result-cta" target="_blank">
+        Ver mi kit personalizado →
+      </a>
+      <p style="font-size:12px; color:#aaa; margin-top:20px; line-height:1.6;">
+        Si sientes que tu relación con la comida te genera angustia frecuente,
+        te invitamos a buscar apoyo especializado.<br>
+        <strong>Colombia: Línea 106 · Gratuita · 24 horas</strong>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- 5 CAMILAS -->
+<section class="camilas-section">
+  <div class="camilas-inner">
+    <div class="camilas-header reveal">
+      <span class="section-tag" style="color: var(--lilac);">La docuserie</span>
+      <h2>5 Camilas. 5 Hambres reales.</h2>
+      <p>Sin filtros. Sin guión de fitness perfecto. Solo verdad.</p>
+    </div>
+
+    <div class="camilas-grid reveal">
+      <div class="camila-card">
+        <div class="camila-avatar" style="background: rgba(232,99,122,0.15);">🪞</div>
+        <div class="camila-name">Camila</div>
+        <div class="camila-city">Medellín · 24</div>
+        <span class="camila-tag" style="background:rgba(232,99,122,0.15); color: var(--pink);">
+          El hambre que no se nombra
+        </span>
+      </div>
+      <div class="camila-card">
+        <div class="camila-avatar" style="background: rgba(196,184,240,0.15);">🌙</div>
+        <div class="camila-name">Camila</div>
+        <div class="camila-city">Bogotá · 31</div>
+        <span class="camila-tag" style="background:rgba(196,184,240,0.15); color: var(--lilac);">
+          Hambre de que me vean
+        </span>
+      </div>
+      <div class="camila-card">
+        <div class="camila-avatar" style="background: rgba(245,230,66,0.15);">📱</div>
+        <div class="camila-name">Camila</div>
+        <div class="camila-city">Cali · 19</div>
+        <span class="camila-tag" style="background:rgba(245,230,66,0.15); color: #b8a800;">
+          El cuerpo que nunca fue suficiente
+        </span>
+      </div>
+      <div class="camila-card">
+        <div class="camila-avatar" style="background: rgba(240,125,58,0.15);">⏱️</div>
+        <div class="camila-name">Camila</div>
+        <div class="camila-city">Barranquilla · 38</div>
+        <span class="camila-tag" style="background:rgba(240,125,58,0.15); color: var(--orange);">
+          Hambre de tiempo
+        </span>
+      </div>
+      <div class="camila-card">
+        <div class="camila-avatar" style="background: rgba(75,174,116,0.15);">🌿</div>
+        <div class="camila-name">Camila</div>
+        <div class="camila-city">Pereira · 26</div>
+        <span class="camila-tag" style="background:rgba(75,174,116,0.15); color: var(--green);">
+          El hambre que heredé
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIPLE ACCION -->
+<section class="triple-section">
+  <div class="triple-inner">
+    <div class="triple-header reveal">
+      <span class="section-tag">Cómo funciona la causa</span>
+      <h2>Tu compra hace tres cosas.</h2>
+      <p>Trazable · Auditado · Público trimestralmente</p>
+    </div>
+
+    <div class="triple-items reveal">
+      <div class="triple-item">
+        <div class="triple-num">1</div>
+        <div class="triple-content">
+          <h3>1 Mumu Green comprado</h3>
+          <p>Alianza Banco de Alimentos de Colombia. Cada unidad vendida financia un almuerzo nutritivo para un niño en situación de vulnerabilidad.</p>
+        </div>
+        <div class="triple-equals" style="color: var(--pink);">= 🍽️</div>
+      </div>
+      <div class="triple-item">
+        <div class="triple-num">2</div>
+        <div class="triple-content">
+          <h3>50 Mumu Green = 1 sesión</h3>
+          <p>Alianza ACAB · Asociación Colombiana de Anorexia y Bulimia. Por cada 50 unidades vendidas, se financia una sesión psicológica especializada.</p>
+        </div>
+        <div class="triple-equals" style="color: var(--purple);">= 🧠</div>
+      </div>
+      <div class="triple-item">
+        <div class="triple-num">3</div>
+        <div class="triple-content">
+          <h3>Cada compra viraliza</h3>
+          <p>Recibes tu etiqueta digital #HambreReal para compartir tu historia. El UGC auténtico es el motor de la campaña.</p>
+        </div>
+        <div class="triple-equals" style="color: var(--green);">= 📢</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALIADOS -->
+<section class="aliados-section" id="aliados">
+  <div class="aliados-inner">
+    <div class="aliados-header reveal">
+      <span class="section-tag">Quiénes hacen posible la causa</span>
+      <h2>Los aliados<br>que dan credibilidad.</h2>
+      <p>Las alianzas correctas convierten una campaña en un movimiento.</p>
+    </div>
+
+    <div class="aliados-grid reveal">
+      <div class="aliado-card">
+        <div class="aliado-icon" style="background: rgba(232,99,122,0.1);">🥣</div>
+        <div>
+          <span class="aliado-badge" style="background:rgba(232,99,122,0.1); color:var(--pink);">Impacto Físico</span>
+          <h3>Banco de Alimentos de Colombia</h3>
+          <p>Garantiza la trazabilidad de cada almuerzo donado. Informe público trimestral.</p>
+        </div>
+      </div>
+      <div class="aliado-card">
+        <div class="aliado-icon" style="background: rgba(61,43,142,0.1);">🧠</div>
+        <div>
+          <span class="aliado-badge" style="background:rgba(61,43,142,0.1); color:var(--purple);">Salud Mental</span>
+          <h3>ACAB Colombia</h3>
+          <p>Asociación Colombiana de Anorexia y Bulimia. Aporta legitimidad clínica y escala las sesiones psicológicas.</p>
+        </div>
+      </div>
+      <div class="aliado-card">
+        <div class="aliado-icon" style="background: rgba(75,174,116,0.1);">🎓</div>
+        <div>
+          <span class="aliado-badge" style="background:rgba(75,174,116,0.1); color:var(--green);">Academia</span>
+          <h3>UPB · EAFIT · UdeA</h3>
+          <p>Estudiantes de nutrición, investigación y voluntariado. Rigor científico sin costo elevado.</p>
+        </div>
+      </div>
+      <div class="aliado-card">
+        <div class="aliado-icon" style="background: rgba(245,230,66,0.15);">🎙️</div>
+        <div>
+          <span class="aliado-badge" style="background:rgba(245,230,66,0.15); color:#8a7d00;">Voceras</span>
+          <h3>3 mujeres con verdad</h3>
+          <p>No influencers fitness perfectas. Mujeres con plataforma y recuperación pública. Voces con autoridad real.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APOYO -->
+<section class="apoyo-section">
+  <div class="apoyo-inner">
+    <h3>Si esto resuena contigo,<br>no estás sola.</h3>
+    <p>Esta campaña habla de temas reales. Si estás atravesando
+      una relación difícil con la comida o tu cuerpo,
+      hay apoyo especializado y gratuito disponible.</p>
+    <div class="apoyo-linea">
+      <div class="apoyo-num">106</div>
+      <div class="apoyo-text">
+        <strong>Línea Nacional de Salud Mental</strong>
+        <span>Gratuita · 24 horas · Confidencial · Colombia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>El bienestar que sí<br>cabe en tu vida <span>real.</span></h2>
+  <p>Empieza con una pregunta honesta.
+    Continúa con un hábito que puedas sostener.</p>
+  <div class="cta-final-actions">
+    <a href="https://mumucol.com" class="btn-primary" target="_blank">
+      Ver productos MUMU
+    </a>
+    <button class="btn-secondary" onclick="document.getElementById('quiz-modal').classList.add('active')">
+      Hacer el quiz
+    </button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">mu<span>mu</span></div>
+  <ul class="footer-links">
+    <li><a href="https://mumucol.com">mumucol.com</a></li>
+    <li><a href="#">Política de privacidad</a></li>
+    <li><a href="#">Términos</a></li>
+  </ul>
+  <div class="footer-hash">#HambreReal</div>
+</footer>
+
+<script>
+// Quiz
+function nextQ(current, next, progress) {
+  document.getElementById(current).style.display = 'none';
+  document.getElementById(next).style.display = 'block';
+  document.getElementById('quiz-progress').style.width = progress + '%';
+}
+
+function showResult() {
+  document.getElementById('quiz-content').style.display = 'none';
+  document.getElementById('quiz-result').classList.add('active');
+}
+
+function closeQuiz() {
+  document.getElementById('quiz-modal').classList.remove('active');
+  // Reset
+  setTimeout(() => {
+    document.getElementById('quiz-content').style.display = 'block';
+    document.getElementById('quiz-result').classList.remove('active');
+    document.getElementById('q1').style.display = 'block';
+    document.getElementById('q2').style.display = 'none';
+    document.getElementById('q3').style.display = 'none';
+    document.getElementById('q4').style.display = 'none';
+    document.getElementById('quiz-progress').style.width = '25%';
+  }, 300);
+}
+
+// Contadores animados
+function animateCounter(id, target, duration, suffix = '') {
+  const el = document.getElementById(id);
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) {
+      el.textContent = target.toLocaleString('es-CO') + suffix;
+      clearInterval(timer);
+    } else {
+      el.textContent = Math.floor(start).toLocaleString('es-CO') + suffix;
+    }
+  }, 16);
+}
+
+// Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+
+      // Trigger counters when contador section is visible
+      if (entry.target.closest('.contador-section')) {
+        animateCounter('counter1', 3412, 2000);
+        animateCounter('counter2', 68, 2000);
+        animateCounter('counter3', 12847, 2000);
+        animateCounter('counter4', 18, 1500);
+      }
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Close modal on backdrop click
+document.getElementById('quiz-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeQuiz();
+});
+</script>
+</body>
+</html>
